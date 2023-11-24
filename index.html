@@ -1,13 +1,19 @@
-<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script type="importmap">
+  {
+    "imports": {
+      "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+    }
+  }
+</script>
 
 <div id="app">{{ message }}</div>
 
-<script>
-  const { createApp, ref } = Vue
+<script type="module">
+  import { createApp, ref } from 'vue'
 
   createApp({
     setup() {
-      const message = ref('Hello vue!')
+      const message = ref('Hello Vue!')
       return {
         message
       }
