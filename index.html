@@ -1,22 +1,42 @@
-<script type="importmap">
-  {
-    "imports": {
-      "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
-    }
-  }
-</script>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="/styles/style.css" />
+    <!--PWA requirements-->
+    <meta name="theme-color" content="#9480FF" />
+    <link
+      rel="apple-touch-icon"
+      href="https://cdn.glitch.me/efc5414a-882b-4708-af81-8461abbc1a82%2Ftouch-icon.png?v=1633521972305"
+    />
 
-<div id="app">{{ message }}</div>
-
-<script type="module">
-  import { createApp, ref } from 'vue'
-
-  createApp({
-    setup() {
-      const message = ref('Hello Vue!')
-      return {
-        message
+    <!-- PWA setup - update public/sw.js if you add your own assets like a new .css file -->
+    <link rel="manifest" href="manifest.json" />
+    <script>
+      if (location.protocol == "http:") location.protocol = "https:";
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("sw.js")
+          .then((reg) => console.log("Service Worker registered", reg))
+          .catch((err) =>
+            console.error("Service Worker **not** registered", err)
+          );
+      } else {
+        console.warn("Service Worker not supported in this browser");
       }
-    }
-  }).mount('#app')
-</script>
+    </script>
+    <script type="module" src="scripts/render.js"></script>
+    <!-- templates/head.js will fill in here -->
+  </head>
+  <body>
+    <main>
+      <div class="wrapper">
+        <div id="content" class="content">
+          <!-- scripts/render.js determines what fills in here -->
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
