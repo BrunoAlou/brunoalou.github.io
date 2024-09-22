@@ -1,42 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="https://glitch.com/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="/styles/style.css" />
-    <!--PWA requirements-->
-    <meta name="theme-color" content="#9480FF" />
-    <link
-      rel="apple-touch-icon"
-      href="https://cdn.glitch.me/efc5414a-882b-4708-af81-8461abbc1a82%2Ftouch-icon.png?v=1633521972305"
-    />
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bio Inspirada no Glitch</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="https://example.com/favicon.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Olá, eu sou <span class="glitch">Seu Nome</span></h1>
+      <p>Desenvolvedor Fullstack | PHP | React | Entusiasta de Tecnologia</p>
+    </header>
 
-    <!-- PWA setup - update public/sw.js if you add your own assets like a new .css file -->
-    <link rel="manifest" href="manifest.json" />
-    <script>
-      if (location.protocol == "http:") location.protocol = "https:";
-      if ("serviceWorker" in navigator) {
-        navigator.serviceWorker
-          .register("sw.js")
-          .then((reg) => console.log("Service Worker registered", reg))
-          .catch((err) =>
-            console.error("Service Worker **not** registered", err)
-          );
-      } else {
-        console.warn("Service Worker not supported in this browser");
-      }
-    </script>
-    <script type="module" src="scripts/render.js"></script>
-    <!-- templates/head.js will fill in here -->
-  </head>
-  <body>
-    <main>
-      <div class="wrapper">
-        <div id="content" class="content">
-          <!-- scripts/render.js determines what fills in here -->
-        </div>
+    <section class="bio">
+      <h2>Sobre Mim</h2>
+      <p>Sou um desenvolvedor apaixonado por tecnologia, com experiência em várias linguagens e frameworks como PHP, React, e Laravel. Minha missão é criar soluções inovadoras e eficientes.</p>
+    </section>
+
+    <section class="social-links">
+      <h2>Me Encontre Aqui</h2>
+      <div class="links">
+        <a href="https://github.com/seu-usuario" target="_blank">
+          <img src="https://img.icons8.com/ios-glyphs/30/000000/github.png" alt="GitHub">
+        </a>
+        <a href="https://www.linkedin.com/in/seu-usuario/" target="_blank">
+          <img src="https://img.icons8.com/ios-glyphs/30/000000/linkedin.png" alt="LinkedIn">
+        </a>
+        <a href="https://twitter.com/seu-usuario" target="_blank">
+          <img src="https://img.icons8.com/ios-glyphs/30/000000/twitter.png" alt="Twitter">
+        </a>
       </div>
-    </main>
-  </body>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>
