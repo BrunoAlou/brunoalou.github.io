@@ -73,3 +73,61 @@
     font-size: 0.9rem;
   }
   
+  .profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .profile-pic:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 20px rgba(0, 255, 127, 0.5);
+  }
+
+  .glitch {
+    position: relative;
+    color: #ff79c6;
+    font-weight: 700;
+    font-size: 3rem;
+    text-shadow: 2px 2px #ff5555;
+    animation: glitch 1.5s infinite;
+  }
+  
+  @keyframes glitch {
+    0% {
+      text-shadow: 2px 2px #ff5555;
+    }
+    50% {
+      text-shadow: -2px -2px #50fa7b;
+    }
+    100% {
+      text-shadow: 2px 2px #ff5555;
+    }
+  }
+  body.light-mode {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  
+  body.dark-mode {
+    background-color: #282a36;
+    color: #f8f8f2;
+  }
+  
+  #theme-toggle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #50fa7b;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  #theme-toggle:hover {
+    background-color: #6272a4;
+  }
+  
