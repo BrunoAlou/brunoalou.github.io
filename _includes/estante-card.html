@@ -1,0 +1,15 @@
+{%- include estante-itens.html estante=include.estante -%}
+<a class="card shelf-card" href="{{ include.estante.url | relative_url }}">
+  <div class="shelf-card-covers">
+    {% for item in itens limit: 3 %}
+      {% include catalogo-capa.html item=item %}
+    {% else %}
+      <div class="cover cover-{{ include.estante.tipo }} cover-empty"></div>
+    {% endfor %}
+  </div>
+  {%- assign tipo = site.data.tipos[include.estante.tipo] -%}
+  <span class="badge">{{ tipo.icone }} {{ tipo.nome }}</span>
+  <h3>{{ include.estante.title }}</h3>
+  {% if include.estante.descricao %}<p>{{ include.estante.descricao }}</p>{% endif %}
+  <span class="meta">{{ itens.size }} {% if itens.size == 1 %}item{% else %}itens{% endif %}</span>
+</a>

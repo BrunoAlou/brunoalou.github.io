@@ -1,0 +1,14 @@
+<article class="card">
+  <h3>{{ include.project.nome }}</h3>
+  <p>{{ include.project.descricao }}</p>
+  {% if include.project.tags.size > 0 %}
+    <ul class="tags">
+      {% for tag in include.project.tags %}<li>{{ tag }}</li>{% endfor %}
+    </ul>
+  {% endif %}
+  <div class="card-links">
+    {% if include.project.privado %}<span class="meta">🔒 Repositório privado</span>
+    {% elsif include.project.repo %}<a href="{{ include.project.repo }}" target="_blank" rel="noopener">Código</a>{% endif %}
+    {% if include.project.demo %}<a href="{{ include.project.demo }}" target="_blank" rel="noopener">Demo</a>{% endif %}
+  </div>
+</article>

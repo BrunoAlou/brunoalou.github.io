@@ -1,0 +1,19 @@
+{%- assign item = include.item -%}
+{%- assign src = nil -%}
+{%- if item.capa -%}
+  {%- if item.capa contains '://' -%}{%- assign src = item.capa -%}{%- else -%}{%- assign src = item.capa | relative_url -%}{%- endif -%}
+{%- elsif item.isbn -%}
+  {%- comment -%} Capa do Open Library a partir do ISBN {%- endcomment -%}
+  {%- assign isbn = item.isbn | remove: '-' | remove: ' ' -%}
+  {%- assign src = 'https://covers.openlibrary.org/b/isbn/' | append: isbn | append: '-L.jpg?default=false' -%}
+{%- endif -%}
+{%- assign cor = item.title.size | times: 7 | plus: item.autor.size | modulo: 6 -%}
+{%- if item.cor -%}{%- assign cor = item.cor -%}{%- endif -%}
+{%- comment -%} A capa colorida fica por baixo e aparece se a imagem não carregar {%- endcomment -%}
+<div class="cover cover-{{ item.tipo }} cover-fallback cover-color-{{ cor }}">
+  <span class="cover-title">{{ item.title }}</span>
+  <span class="cover-author">{{ item.autor }}</span>
+  {%- if src %}
+  <img src="{{ src }}" alt="Capa de {{ item.title }}" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+  {%- endif %}
+</div>

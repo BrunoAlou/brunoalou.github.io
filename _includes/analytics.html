@@ -1,0 +1,78 @@
+{%- if site.analytics.google and site.analytics.google != 'G-XXXXXXXXXX' -%}
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Aviso de cookies" hidden>
+  <p>
+    Este site usa cookies do Google Analytics para entender quantas pessoas o visitam e quais páginas são mais lidas.
+    <a href="{{ '/privacidade/' | relative_url }}">Saiba mais</a>.
+  </p>
+  <div class="cookie-actions">
+    <button type="button" class="cookie-reject">Recusar</button>
+    <button type="button" class="cookie-accept">Aceitar</button>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var GA_ID = '{{ site.analytics.google }}';
+    // No servidor local o aviso aparece, mas o Analytics nunca é carregado
+    var enabled = {% if jekyll.environment == 'production' %}true{% else %}false{% endif %};
+    var banner = document.getElementById('cookie-banner');
+
+    function getConsent() {
+      try { return localStorage.getItem('cookie-consent'); } catch (e) { return null; }
+    }
+
+    function setConsent(value) {
+      try { localStorage.setItem('cookie-consent', value); } catch (e) {}
+    }
+
+    function loadAnalytics() {
+      if (!enabled || window.gtag) return;
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+      document.head.appendChild(script);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { dataLayer.push(arguments); };
+      gtag('js', new Date());
+      gtag('config', GA_ID);
+    }
+
+    function removeAnalyticsCookies() {
+      document.cookie.split(';').forEach(function (cookie) {
+        var name = cookie.split('=')[0].trim();
+        if (name.indexOf('_ga') !== 0) return;
+        var expires = '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+        document.cookie = name + expires;
+        document.cookie = name + expires + '; domain=' + location.hostname;
+        document.cookie = name + expires + '; domain=.' + location.hostname;
+      });
+    }
+
+    banner.querySelector('.cookie-accept').addEventListener('click', function () {
+      setConsent('accepted');
+      banner.hidden = true;
+      loadAnalytics();
+    });
+
+    banner.querySelector('.cookie-reject').addEventListener('click', function () {
+      var wasAccepted = getConsent() === 'accepted';
+      setConsent('rejected');
+      banner.hidden = true;
+      removeAnalyticsCookies();
+      // Se o Analytics já estava rodando, recarrega para descarregá-lo
+      if (wasAccepted && window.gtag) location.reload();
+    });
+
+    document.querySelectorAll('.cookie-settings').forEach(function (link) {
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
+        banner.hidden = false;
+      });
+    });
+
+    var consent = getConsent();
+    if (consent === 'accepted') loadAnalytics();
+    else if (consent !== 'rejected') banner.hidden = false;
+  })();
+</script>
+{%- endif -%}

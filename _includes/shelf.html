@@ -1,0 +1,15 @@
+{%- assign max = include.limit | default: 1000 -%}
+{% if include.items.size > 0 %}
+  <div class="shelf">
+    {% for item in include.items limit: max %}
+      <a class="shelf-item" href="{{ item.url | relative_url }}" title="{{ item.title }}">
+        {% include catalogo-capa.html item=item %}
+        {% if item.status != 'concluido' %}
+          <span class="shelf-tag status-{{ item.status }}">{% include catalogo-status.html item=item %}</span>
+        {% endif %}
+      </a>
+    {% endfor %}
+  </div>
+{% else %}
+  <p class="meta">Prateleira vazia.</p>
+{% endif %}

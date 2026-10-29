@@ -1,0 +1,37 @@
+---
+layout: default
+---
+{% assign tipo = site.data.tipos[page.tipo] %}
+{% assign estantes = site.estantes | where: 'tipo', page.tipo %}
+{% assign destaques = estantes | where: 'destaque', true | sort: 'ordem', 'last' %}
+{% assign demais = estantes | where_exp: 'estante', 'estante.destaque != true' | sort: 'ordem', 'last' %}
+
+{% include catalogo-breadcrumb.html tipo=page.tipo %}
+<h1 class="page-title">{{ tipo.icone }} {{ tipo.nome }}</h1>
+<p class="page-subtitle">{{ tipo.descricao }}</p>
+
+{% if destaques.size > 0 %}
+  <section>
+    <h2>Em destaque</h2>
+    <div class="grid">
+      {% for estante in destaques %}
+        {% include estante-card.html estante=estante %}
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+{% if demais.size > 0 %}
+  <section id="estantes">
+    <h2>Todas as estantes</h2>
+    <div class="grid" data-paginate="9">
+      {% for estante in demais %}
+        {% include estante-card.html estante=estante %}
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+{% if estantes.size == 0 %}<p class="meta">Nenhuma estante ainda.</p>{% endif %}
+
+<a class="back" href="{{ '/catalogo/' | relative_url }}">← Voltar para o catálogo</a>

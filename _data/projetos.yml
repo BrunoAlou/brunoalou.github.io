@@ -1,0 +1,15 @@
+# Lista de projetos exibida em /projetos/ (os com destaque: true aparecem na home).
+# Campos: nome, descricao, tags, repo, demo (opcional), privado (opcional), destaque (opcional)
+
+- nome: OneThing
+  descricao: Descreva aqui o OneThing.
+  tags: []
+  privado: true
+  destaque: true
+
+- nome: brunoalou.github.io
+  descricao: Este site — blog, projetos e catálogo pessoal feitos com Jekyll e GitHub Pages.
+  tags: [Jekyll, HTML, CSS]
+  repo: https://github.com/BrunoAlou/brunoalou.github.io
+  demo: https://brunoalou.github.io
+  destaque: true

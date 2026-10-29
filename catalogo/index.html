@@ -1,0 +1,30 @@
+---
+layout: default
+title: Catálogo
+---
+<h1 class="page-title">Catálogo</h1>
+<p class="page-subtitle">Livros, filmes e jogos que conheci ou quero conhecer.</p>
+
+<div class="grid">
+  {% for par in site.data.tipos %}
+    {% assign id = par[0] %}
+    {% assign tipo = par[1] %}
+    {% assign itens = site.catalogo | where: 'tipo', id | sort: 'title' %}
+    {% assign estantes = site.estantes | where: 'tipo', id %}
+    <a class="card shelf-card" href="{{ '/catalogo/' | append: tipo.slug | append: '/' | relative_url }}">
+      <div class="shelf-card-covers">
+        {% for item in itens limit: 3 %}
+          {% include catalogo-capa.html item=item %}
+        {% else %}
+          <div class="cover cover-{{ id }} cover-empty"></div>
+        {% endfor %}
+      </div>
+      <h3>{{ tipo.icone }} {{ tipo.nome }}</h3>
+      <p>{{ tipo.descricao }}</p>
+      <span class="meta">
+        {{ itens.size }} {% if itens.size == 1 %}item{% else %}itens{% endif %}
+        · {{ estantes.size }} {% if estantes.size == 1 %}estante{% else %}estantes{% endif %}
+      </span>
+    </a>
+  {% endfor %}
+</div>

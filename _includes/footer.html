@@ -1,0 +1,8 @@
+<footer class="site-footer">
+  {% include social.html %}
+  <p>
+    © {{ 'now' | date: '%Y' }} {{ site.title }} · <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+    · <a href="{{ '/privacidade/' | relative_url }}">Privacidade</a>
+    {% if site.analytics.google and site.analytics.google != 'G-XXXXXXXXXX' %}· <a href="#" class="cookie-settings">Cookies</a>{% endif %}
+  </p>
+</footer>

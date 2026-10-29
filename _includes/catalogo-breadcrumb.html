@@ -1,0 +1,9 @@
+{%- assign tipo = site.data.tipos[include.tipo] -%}
+<p class="breadcrumb">
+  <a href="{{ '/catalogo/' | relative_url }}">Catálogo</a> /
+  {% if include.atual %}
+    <a href="{{ '/catalogo/' | append: tipo.slug | append: '/' | relative_url }}">{{ tipo.nome }}</a> / {{ include.atual }}
+  {% else %}
+    {{ tipo.nome }}
+  {% endif %}
+</p>

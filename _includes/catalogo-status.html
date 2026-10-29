@@ -1,0 +1,6 @@
+{%- assign tipo = site.data.tipos[include.item.tipo] -%}
+{%- case include.item.status -%}
+  {%- when 'concluido' -%}{{ tipo.concluido }}
+  {%- when 'andamento' -%}{{ tipo.andamento }}
+  {%- else -%}Quero conhecer
+{%- endcase -%}

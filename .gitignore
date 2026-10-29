@@ -6,3 +6,7 @@ web_modules
 .pm2
 .snowpack
 build
+_site
+.jekyll-cache
+.jekyll-metadata
+.sass-cache

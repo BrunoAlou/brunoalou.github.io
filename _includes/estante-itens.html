@@ -1,0 +1,10 @@
+{%- comment -%}
+  Define `itens` com os itens da estante recebida.
+  Estantes com `todos: true` reúnem todos os itens do mesmo tipo.
+{%- endcomment -%}
+{%- assign estante_id = include.estante.slug -%}
+{%- if include.estante.todos -%}
+  {%- assign itens = site.catalogo | where: 'tipo', include.estante.tipo | sort: 'title' -%}
+{%- else -%}
+  {%- assign itens = site.catalogo | where_exp: 'item', 'item.estantes contains estante_id' | sort: 'title' -%}
+{%- endif -%}

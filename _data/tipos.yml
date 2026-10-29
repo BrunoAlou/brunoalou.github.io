@@ -1,0 +1,30 @@
+# Tipos do catálogo. A chave (livro, filme, jogo) é o valor usado no campo `tipo`
+# dos itens e das estantes. Para criar um tipo novo, adicione uma entrada aqui
+# e uma página em catalogo/<slug>/index.html (copie uma das existentes).
+
+livro:
+  nome: Livros
+  singular: Livro
+  icone: 📖
+  slug: livros
+  descricao: O que li, estou lendo ou quero ler.
+  concluido: Lido
+  andamento: Lendo
+
+filme:
+  nome: Filmes
+  singular: Filme
+  icone: 🎬
+  slug: filmes
+  descricao: O que assisti, estou assistindo ou quero assistir.
+  concluido: Assistido
+  andamento: Assistindo
+
+jogo:
+  nome: Jogos
+  singular: Jogo
+  icone: 🎮
+  slug: jogos
+  descricao: O que joguei, estou jogando ou quero jogar.
+  concluido: Jogado
+  andamento: Jogando

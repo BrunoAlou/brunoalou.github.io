@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% seo %}
+  {% feed_meta %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+  <script>
+    // Aplica o tema salvo antes de renderizar para evitar "piscar"
+    try { if (localStorage.getItem('theme') === 'light') document.documentElement.classList.add('light-mode'); } catch (e) {}
+  </script>
+</head>
+<body>
+  {% include nav.html %}
+
+  <main class="container">
+    {{ content }}
+  </main>
+
+  {% include footer.html %}
+
+  <script src="{{ '/assets/script.js' | relative_url }}"></script>
+  {% include analytics.html %}
+</body>
+</html>

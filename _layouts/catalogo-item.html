@@ -1,0 +1,43 @@
+---
+layout: default
+---
+{% assign tipo = site.data.tipos[page.tipo] %}
+{% include catalogo-breadcrumb.html tipo=page.tipo atual=page.title %}
+
+<article class="catalog-detail">
+  <div class="catalog-detail-cover">
+    {% include catalogo-capa.html item=page %}
+  </div>
+
+  <div class="catalog-detail-info">
+    <span class="badge">{{ tipo.icone }} {{ tipo.singular }}</span>
+    <h1>{{ page.title }}</h1>
+    <p class="meta">{{ page.autor }}{% if page.ano %} · {{ page.ano }}{% endif %}</p>
+    <p class="status status-{{ page.status }}">{% include catalogo-status.html item=page %}</p>
+    {% if page.nota %}
+      <p class="rating" aria-label="Nota {{ page.nota }} de 5">
+        {% for i in (1..5) %}{% if i <= page.nota %}★{% else %}☆{% endif %}{% endfor %}
+      </p>
+    {% endif %}
+
+    {% if page.estantes %}
+      <ul class="tags">
+        {% for id in page.estantes %}
+          {% assign estante = site.estantes | where: 'slug', id | first %}
+          {% if estante %}<li><a href="{{ estante.url | relative_url }}">{{ estante.title }}</a></li>{% endif %}
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% if page.imdb %}
+      <p><a href="https://www.imdb.com/title/{{ page.imdb }}/" target="_blank" rel="noopener">Ver no IMDb ↗</a></p>
+    {% endif %}
+
+    {% assign texto = content | strip_html | strip %}
+    {% if texto != '' %}
+      <div class="post-content">{{ content }}</div>
+    {% endif %}
+  </div>
+</article>
+
+<a class="back" href="{{ '/catalogo/' | append: tipo.slug | append: '/' | relative_url }}">← Voltar para {{ tipo.nome | downcase }}</a>

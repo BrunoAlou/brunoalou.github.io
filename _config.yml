@@ -1,0 +1,49 @@
+title: Bruno Alves
+description: Desenvolvedor Fullstack | PHP | React | Entusiasta de Tecnologia
+lang: pt-BR
+url: https://brunoalou.github.io
+baseurl: ""
+
+permalink: /blog/:year/:month/:day/:title/
+
+collections:
+  catalogo:
+    output: true
+    permalink: /catalogo/:name/
+  estantes:
+    output: true
+    permalink: /catalogo/estantes/:name/
+
+defaults:
+  - scope: { type: catalogo }
+    values: { layout: catalogo-item }
+  - scope: { type: estantes }
+    values: { layout: estante }
+
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+social:
+  github: https://github.com/brunoalou
+  linkedin: https://www.linkedin.com/in/brunoalou/
+  twitter: https://twitter.com/brunoaloudev
+
+# Google Analytics 4: ID de medição (G-XXXXXXXXXX), em Administrador > Fluxos de dados.
+# Só carrega no site publicado e depois que o visitante aceita os cookies.
+analytics:
+  google: G-VGSZJ6YJ7E
+
+nav:
+  - { title: Início, url: / }
+  - { title: Blog, url: /blog/ }
+  - { title: Projetos, url: /projetos/ }
+  - { title: Catálogo, url: /catalogo/ }
+  - { title: Sobre, url: /sobre/ }
+
+exclude:
+  - README.md
+  - LICENSE
+  - .github
+  - scripts

@@ -1,0 +1,16 @@
+---
+layout: default
+---
+{% include estante-itens.html estante=page %}
+
+{% assign tipo = site.data.tipos[page.tipo] %}
+{% include catalogo-breadcrumb.html tipo=page.tipo atual=page.title %}
+<h1 class="page-title">{{ page.title }}</h1>
+{% if page.descricao %}<p class="page-subtitle">{{ page.descricao }}</p>{% endif %}
+<p class="meta shelf-count">{{ itens.size }} {% if itens.size == 1 %}item{% else %}itens{% endif %}</p>
+
+{% include shelf.html items=itens %}
+
+{{ content }}
+
+<a class="back" href="{{ '/catalogo/' | append: tipo.slug | append: '/' | relative_url }}">← Voltar para {{ tipo.nome | downcase }}</a>

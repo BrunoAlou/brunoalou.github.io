@@ -1,45 +1,29 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bio Inspirada no Glitch</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="https://example.com/favicon.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-</head>
-<body>
-  <div class="container">
-    <button id="theme-toggle">Alternar Tema</button>
+---
+layout: default
+---
+<section class="hero">
+  <img src="{{ '/assets/img/brunoalou.jpeg' | relative_url }}" alt="Foto de Bruno Alves" class="profile-pic">
+  <h1>Olá, eu sou <span class="glitch">Bruno Alves</span></h1>
+  <p>{{ site.description }}</p>
+</section>
 
-    <header>
-      <img src="brunoalou.jpeg" alt="Bruno Foto" class="profile-pic">
-
-      <h1>Olá, eu sou <span class="glitch">Bruno Alves</span></h1>
-      <p>Desenvolvedor Fullstack | PHP | React | Entusiasta de Tecnologia</p>
-    </header>
-
-    <section class="bio">
-      <h2>Sobre Mim</h2>
-      <p>Sou um desenvolvedor apaixonado por tecnologia, com experiência em várias linguagens e frameworks como PHP, React, e Laravel. Minha missão é criar soluções inovadoras e eficientes.</p>
-    </section>
-
-    <section class="social-links">
-      <h2>Me Encontre Aqui</h2>
-      <div class="links">
-        <a href="https://github.com/brunoalou" target="_blank">
-          <img src="https://img.icons8.com/ios-glyphs/30/000000/github.png" alt="GitHub">
-        </a>
-        <a href="https://www.linkedin.com/in/brunoalou/" target="_blank">
-          <img src="https://img.icons8.com/ios-glyphs/30/000000/linkedin.png" alt="LinkedIn">
-        </a>
-        <a href="https://twitter.com/brunoaloudev" target="_blank">
-          <img src="https://img.icons8.com/ios-glyphs/30/000000/twitter.png" alt="Twitter">
-        </a>
-      </div>
-    </section>
+<section>
+  <div class="section-head">
+    <h2>Últimos posts</h2>
+    <a href="{{ '/blog/' | relative_url }}">Ver todos →</a>
   </div>
+  {% include post-list.html posts=site.posts limit=3 %}
+</section>
 
-  <script src="script.js"></script>
-</body>
-</html>
+<section>
+  <div class="section-head">
+    <h2>Projetos em destaque</h2>
+    <a href="{{ '/projetos/' | relative_url }}">Ver todos →</a>
+  </div>
+  <div class="grid">
+    {% assign destaques = site.data.projetos | where: 'destaque', true %}
+    {% for project in destaques limit: 3 %}
+      {% include project-card.html project=project %}
+    {% endfor %}
+  </div>
+</section>

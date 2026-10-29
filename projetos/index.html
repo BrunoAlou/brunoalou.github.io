@@ -1,0 +1,12 @@
+---
+layout: default
+title: Projetos
+---
+<h1 class="page-title">Projetos</h1>
+<p class="page-subtitle">Alguns dos projetos em que trabalhei.</p>
+
+<div class="grid">
+  {% for project in site.data.projetos %}
+    {% include project-card.html project=project %}
+  {% endfor %}
+</div>
